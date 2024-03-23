@@ -34,14 +34,14 @@ namespace SignalRApi.Controllers
             });
             return Ok("İşlem başarı şekilde eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteCategory(int id)
         {
             var values = _categoryService.TGetByID(id);
             _categoryService.TDelete(values);
             return Ok("İşlem başarı şekilde silinmiştir.");
         }
-        [HttpGet("GetCategory")]
+        [HttpGet("{id}")]
         public IActionResult GetCategory(int id)
         {
             var values = _categoryService.TGetByID(id);

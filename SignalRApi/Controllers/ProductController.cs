@@ -56,10 +56,11 @@ namespace SignalRApi.Controllers
                 Price = createProductDtos.Price,
                 ImageUrl = createProductDtos.ImageUrl,
                 ProductStatus = createProductDtos.ProductStatus,
+                CategoryID = createProductDtos.CategoryID,//İlişkili tablo oluşturduğumuz için dto da bunu geçtik fakat burada geçmemiz gerekir.
             });
             return Ok("İşlem başarılı şekilde eklenmiştir.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id) 
         {
             var values = _productService.TGetByID(id);
@@ -77,10 +78,11 @@ namespace SignalRApi.Controllers
                 Price = updateProductDtos.Price,
                 ImageUrl = updateProductDtos.ImageUrl,
                 ProductStatus = updateProductDtos.ProductStatus,
+                CategoryID = updateProductDtos.CategoryID,
             });
             return Ok("İşlem başarılı şekilde güncellenmiştir.");
         }
-        [HttpGet("GetProduct")]
+        [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
             var values = _productService.TGetByID(id);
