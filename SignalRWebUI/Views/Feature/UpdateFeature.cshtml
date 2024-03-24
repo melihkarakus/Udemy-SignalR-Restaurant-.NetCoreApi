@@ -1,0 +1,57 @@
+﻿@model UpdateFeatureDtos
+@{
+    ViewData["Title"] = "UpdateFeature";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <h4 class="page-title">Öne Çıkan</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Güncelleme Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="FeatureID" class="form-control" />
+                            <label for="title1">Öne Çıkan Başlık1</label>
+                            <input type="text" class="form-control" asp-for="Title1" id="title1" placeholder="Öne Çıkan Başlık">
+                            <small id="text" class="form-text text-muted">Öne Çıkan Başlık Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="description1">Öne Çıkan Açıklama1</label>
+                            <input type="text" class="form-control" asp-for="Description1" id="description1" placeholder="Öne Çıkan Açıklama">
+                            <small id="text" class="form-text text-muted">Öne Çıkan Açıklama Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="title2">Öne Çıkan Başlık2</label>
+                            <input type="text" class="form-control" asp-for="Title2" id="title2" placeholder="Öne Çıkan Başlık">
+                            <small id="text" class="form-text text-muted">Öne Çıkan Başlık Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="description2">Öne Çıkan Açıklama2</label>
+                            <input type="text" class="form-control" asp-for="Description2" id="description2" placeholder="Öne Çıkan Açıklama">
+                            <small id="text" class="form-text text-muted">Öne Çıkan Açıklama Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="title3">Öne Çıkan Başlık3</label>
+                            <input type="text" class="form-control" asp-for="Title3" id="title3" placeholder="Öne Çıkan Başlık">
+                            <small id="text" class="form-text text-muted">Öne Çıkan Başlık Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="description3">Öne Çıkan Açıklama3</label>
+                            <input type="text" class="form-control" asp-for="Description3" id="description3" placeholder="Öne Çıkan Açıklama">
+                            <small id="text" class="form-text text-muted">Öne Çıkan Açıklama Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Öne Çıkan Güncelle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

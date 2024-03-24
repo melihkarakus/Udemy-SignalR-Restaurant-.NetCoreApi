@@ -39,7 +39,7 @@ namespace SignalRApi.Controllers
             return Ok("Hakkımda kısmı başarılı şekilde eklendi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteAbout(int id)
         {
             var values = _aboutService.TGetByID(id);
@@ -60,7 +60,7 @@ namespace SignalRApi.Controllers
             return Ok("Hakkımda kısmı başarılı şekilde güncellendi.");
         }
 
-        [HttpGet("GetAbout")]
+        [HttpGet("{id}")]
         public IActionResult GetAbout(int id)
         {
             var value = _aboutService.TGetByID(id);

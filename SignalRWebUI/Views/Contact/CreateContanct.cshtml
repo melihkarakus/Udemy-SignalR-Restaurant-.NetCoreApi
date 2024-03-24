@@ -1,0 +1,46 @@
+﻿@model CreateContactDtos
+@{
+    ViewData["Title"] = "CreateContanct";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <h4 class="page-title">İletişim</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Ekleme Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="location"> Lokasyon</label>
+                            <input type="text" class="form-control" asp-for="Location" id="location" placeholder="Lokasyon">
+                            <small id="text" class="form-text text-muted">Lokasyon Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"> Telefon</label>
+                            <input type="text" class="form-control" asp-for="Phone" id="phone" placeholder="Telefon">
+                            <small id="text" class="form-text text-muted">Telefon Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail"> Mail</label>
+                            <input type="text" class="form-control" asp-for="Mail" id="mail" placeholder="Mail">
+                            <small id="text" class="form-text text-muted">Mail Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="footerdescription"> Açıklama</label>
+                            <input type="text" class="form-control" asp-for="FooterDescription" id="footerdescription" placeholder="Açıklama">
+                            <small id="text" class="form-text text-muted">Açıklama Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">İletişim Ekle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

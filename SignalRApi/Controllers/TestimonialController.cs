@@ -39,7 +39,7 @@ namespace SignalRApi.Controllers
             });
             return Ok("İşlem başarılı şekilde eklenmiştir.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteTestimonial(int id)
         {
             var values = _testimonialService.TGetByID(id);
@@ -60,7 +60,7 @@ namespace SignalRApi.Controllers
             });
             return Ok("İşlem başarılı şekilde güncellenmiştir.");
         }
-        [HttpGet("GetTestimonial")]
+        [HttpGet("{id}")]
         public IActionResult GetTestimonial(int id)
         {
             var values = _testimonialService.TGetByID(id);

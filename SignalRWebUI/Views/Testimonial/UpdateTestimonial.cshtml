@@ -1,0 +1,47 @@
+﻿@model UpdateTestimonialDtos
+@{
+    ViewData["Title"] = "UpdateTestimonial";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <h4 class="page-title">Referans</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Güncelleme Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="TestimonialID" class="form-control" />
+                            <label for="name">Yorum Yapan Adı</label>
+                            <input type="text" class="form-control" asp-for="Name" id="name" placeholder="Yorum Yapan Kişi">
+                            <small id="text" class="form-text text-muted">Yorum Yapan Kişi Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Başlık </label>
+                            <input type="text" class="form-control" asp-for="Title" id="title" placeholder="Başlık">
+                            <small id="text" class="form-text text-muted">Başlık Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Yorum </label>
+                            <input type="text" class="form-control" asp-for="Comment" id="comment" placeholder="Yorum Giriniz">
+                            <small id="text" class="form-text text-muted">Yorum Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageurl">Resim </label>
+                            <input type="text" class="form-control" asp-for="ImageUrl" id="imageurl" placeholder="Resim Giriniz">
+                            <small id="text" class="form-text text-muted">Url Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Referans Güncelle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

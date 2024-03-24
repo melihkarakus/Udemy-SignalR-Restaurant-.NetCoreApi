@@ -1,0 +1,41 @@
+﻿@model CreateSocialMediaDtos
+@{
+    ViewData["Title"] = "CreateSocialMedia";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <h4 class="page-title">Sosyal Medya</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Ekleme Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="socailmedia"> Sosyal Medya</label>
+                            <input type="text" class="form-control" asp-for="Title" id="socialmedia" placeholder="Sosyal Medya Başlık">
+                            <small id="text" class="form-text text-muted">Sosyal Medya Başlığı Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="url"> Url</label>
+                            <input type="text" class="form-control" asp-for="Url" id="url" placeholder="Url">
+                            <small id="text" class="form-text text-muted">Url Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="icon"> İcon</label>
+                            <input type="text" class="form-control" asp-for="Icon" id="icon" placeholder="İcon">
+                            <small id="text" class="form-text text-muted">İcon Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Sosyal Medya Ekle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
