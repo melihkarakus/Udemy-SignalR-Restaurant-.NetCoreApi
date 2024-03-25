@@ -3,12 +3,23 @@ using SignalR.BusinessLayer.Concrete;
 using SignalR.DataAccessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
 using SignalR.DataAccessLayer.EntityFreamework;
+using SignalRApi.Hubs;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
-
+//SignalR Hubs Cors konfigrasyon inþasý bu þekilde.
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host => true))
+        .AllowCredentials();
+    });
+});
+builder.Services.AddSignalR();//SignalR Hubs Cors inþa edildikten sonra bu þekilde ekleme yap
 builder.Services.AddDbContext<SignalRContext>();//Database Ekleme iþlemi
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());//AutoMapper için konfigrasyon
 
@@ -53,11 +64,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("CorsPolicy");//CorsPolicy buraya geç
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<SignalRHub>("/signalrhub");//Signalrhub tarafýna istek atma iþlemi yaparýz burada.
 
 app.Run();

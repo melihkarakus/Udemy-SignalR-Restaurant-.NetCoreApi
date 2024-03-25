@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>SignalR Bağlantı Durumu</h1>
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Düzeltme: cold-md-12 yerine col-md-12 -->
+                <div class="card">
+                    <script type="text/javascript">
+                        $(document).ready(function () { // Düzeltme: $(document).ready() fonksiyonu düzgün syntax ile kullanılmalı
+                            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7123/SignalRHub").build();
+
+                            connection.start().then(() => {
+                                $("#connstatus").text(connection.state);
+                                connection.invoke("SendCategoryCount"); //Tanımlanan kategori istek başlık buraya geçti 
+                            }).catch((err) => { console.log(err) });
+
+                            //Kategori sayısındaki gösterilcek içerik.
+                            connection.on("ReceiveCategoryCount", (value) => {
+                                $("#categorycount").text(value)//Kategori İD buraya geçildi.
+                            });
+
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <!-- Düzeltme: cold-md-8 yerine col-md-8 -->
+        <div class="alert alert-success">
+            Bağlantının Durumu : <strong id="connstatus"></strong>
+        </div>
+        <div class="alert alert-info">
+            Kategori Sayısı : <strong id="categorycount"></strong> <!-- Kategori sayısı gösterilme yeri ve id'si' -->
+        </div>
+    </div>
+</div>

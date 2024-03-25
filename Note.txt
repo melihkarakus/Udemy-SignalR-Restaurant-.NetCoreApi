@@ -1,0 +1,51 @@
+Mapping Giriþ:
+SignalR api katmanýna gelip mapping klasörü oluþtur.
+Mapping klasörüne gel saü týk sýnýf ekle ismi teker teker sýnýflarýmýz ismiyle bir tanýmla
+"CreateMap<About, ResultAboutDtos>().ReverseMap();" Örnek sýnýf tanýmlama bu þekilde eþleþtirme -> Dto ise DtoLayer sýnýfýyla ayný tanýmlandý eþleþtirildi.
+"builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());"//AutoMapper için konfigrasyon -> Program.cs tanýmlancak konfigrasyon.
+
+
+SignalR Giriþ: 
+1- WebUI sað týk -> add -> Client-Side Library -> @microsoft signalr olaný seç oradan -> disc - browser - signalr.js - signalr.js min
+2- SignalR api katmanýna Hubs klasörü oluþtur -> SignalRHub sýnýfýna Hub ile eþleþtirdik
+3- Program.cs tarafýnda SignalR Hubs Cors için konfigrasyon tanýmlandý ve baþlamasý için tanýmlanan cors policy geçildi.
+4- Signalr endpoint tanýmlanmasý gerekiyor signalr istek atabilmek için program.cs þu þekilde "app.MapHub<SignalRHub>("/signalrhub");" tanýmlanýr.
+5- SignalRDefault UI kýsmýna controller oluþturuldu.
+6- SignalR için Layout tarafýnda düzeltme: @RenderSection("Scripts", required: false) bu þekilde.
+7- View içine SignalR Baðlantýsý:
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+@section Scripts {
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Düzeltme: cold-md-12 yerine col-md-12 -->
+                    <div class="card">
+                        <script type="text/javascript">
+                            $(document).ready(function () { // Düzeltme: $(document).ready() fonksiyonu düzgün syntax ile kullanýlmalý
+                                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7123/SignalRHub").build();
+
+                                connection.start().then(() => {
+                                    $("#connstatus").text(connection.state);
+                                }).catch((err) => { console.log(err) });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <!-- Düzeltme: cold-md-8 yerine col-md-8 -->
+        <div class="alert alert-success">
+            Baðlantýnýn Durumu : <strong id="connstatus"></strong>
+        </div>
+    </div>
+</div>
+8- SignalR script kaldýrmak için shared -> _Layout -> en altta ki scriptleri kopyala Indexdeki üste yapýþtýr.
+9- SignalR apii SignalRHub sýnýfýnda Kategori Sayýlarý getirebilmek için kodlama yazýldý.
+10- SignalRDefault içindeki Index View ise Tanýmlamalar geçildi
+11- SignalRDefault Index2 diye bir view oluþturduk ve baðlantýyý ayný þekilde geçtik fakat sadece SetInterval eklendi oda kaç saniye de bir yenilensin yani
+database ekleme yaptýðýnda kaç saniyede bir yenilenme yapsýn da web sayfasýnda göstersin. Index2 setInterval bölümünü inceleyebilirsin.
