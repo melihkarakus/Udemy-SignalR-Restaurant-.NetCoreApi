@@ -1,0 +1,19 @@
+﻿--CategoryCount eklencek : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı.
+--ProductCount eklencek :  DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+--ActiveCategoryNumber : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+--PassiveCategoryNumber : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+
+--KategoriAdınaGöreÜrünSayısı1 : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+--KategoriAdınaGöreÜrünSayısı2 : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+
+--OrtalamaFiyat : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+--EnYüksekÜrünFiyat :  DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+--EnDüşükÜrünFiyat : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+--OrtalamaHamburgerFiyat : DAL katmanında Abstract ve EF içine geçilen kod -> BL katmanında Abstract ve Manager geçilen kod -> Api Controllerda çağırıldı
+
+--ToplamSiparişSayısı :
+--AktifSiparişSayısı : 
+--SonSiparişTutarı : 
+--KasadakiTutar : 
+--BugünküKazanç :
+--MasaSayısı : 

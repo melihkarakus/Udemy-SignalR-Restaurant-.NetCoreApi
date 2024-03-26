@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace SignalR.DataAccessLayer.Abstract
 {
-    //Kendine özgü imza tanımlamak için oluşturulur
-    public interface ICategoryDal : IGenericDal<Category>
-    {
-    }
+	//Kendine özgü imza tanımlamak için oluşturulur
+	public interface ICategoryDal : IGenericDal<Category>
+	{
+		public int CategoryCount();
+		int ActiveCategoryCount();
+		int PassiveCategoryCount();
+	}
 }

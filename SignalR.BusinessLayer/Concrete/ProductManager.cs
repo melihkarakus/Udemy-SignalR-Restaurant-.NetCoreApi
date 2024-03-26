@@ -43,7 +43,37 @@ namespace SignalR.BusinessLayer.Concrete
             return _productDal.GetProductsWithCategories();//Product özel method burada tanımlandı.
         }
 
-        public void TUpdate(Product entity)
+		public int TProductCount()
+		{
+			return _productDal.ProductCount();//İstatistik için yazılan method.
+		}
+
+		public int TProductCountByCategoryNameDrink()
+		{
+			return _productDal.ProductCountByCategoryNameDrink();
+		}
+
+		public int TProductCountByCategoryNameHamburger()
+		{
+			return _productDal.ProductCountByCategoryNameHamburger();
+		}
+
+		public string TProductNameByMaxPrice()
+		{
+			return _productDal.ProductNameByMaxPrice();
+		}
+
+		public string TProductNameByMinPrice()
+		{
+            return _productDal.ProductNameByMinPrice();
+		}
+
+		public decimal TProductPriceAvg()
+		{
+			return _productDal.ProductPriceAvg();
+		}
+
+		public void TUpdate(Product entity)
         {
             _productDal.Update(entity);
         }

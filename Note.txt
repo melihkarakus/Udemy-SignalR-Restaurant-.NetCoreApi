@@ -49,3 +49,12 @@ SignalR Giriþ:
 10- SignalRDefault içindeki Index View ise Tanýmlamalar geçildi
 11- SignalRDefault Index2 diye bir view oluþturduk ve baðlantýyý ayný þekilde geçtik fakat sadece SetInterval eklendi oda kaç saniye de bir yenilensin yani
 database ekleme yaptýðýnda kaç saniyede bir yenilenme yapsýn da web sayfasýnda göstersin. Index2 setInterval bölümünü inceleyebilirsin.
+
+
+Order Ýliþkisel Tablo
+1- Order Tablosu oluþtu ve proplar yazýldý.
+2- OrderDetails Tablosu oluþtu ve proplar yazýldý.
+3- OrderDetails Tablosunda ProductID , Product sýnýfý geçildi çünkü OrderDetails içinde ürünün ýd ve ismi olacak
+4- OrderDetails Tablosunda OrderID , Order sýnýfý geçildi çünkü order açýklama veya sipariþlerinin toplamlarý olacak þekilde
+5- Order Tablosunda ise OrderDetails Listelememiz gerekiyor OrderDetailsda veriler listelendiði için
+6- Product tablosunda ise OrderDetails listelememiz gerekiyor çünkü product verileri listelendiði için
