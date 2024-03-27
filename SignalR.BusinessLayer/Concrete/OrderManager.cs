@@ -53,6 +53,11 @@ namespace SignalR.BusinessLayer.Concrete
 			return _orderDal.PassiveOrderCount();
 		}
 
+		public decimal TToDayTotalPrice()
+		{
+			return _orderDal.ToDayTotalPrice();
+		}
+
 		public int TTotalOrderCount()
 		{
 			return _orderDal.TotalOrderCount();

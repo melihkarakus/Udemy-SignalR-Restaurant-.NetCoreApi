@@ -34,6 +34,12 @@ namespace SignalR.DataAccessLayer.EntityFreamework
 			return context.Orders.Where(x => x.Description == "Hesap Kapatıldı").Count();
 		}
 
+		public decimal ToDayTotalPrice()
+		{
+			using var context = new SignalRContext();
+			return context.Orders.Where(x => x.Date == DateTime.Parse(DateTime.Now.ToShortDateString())).Sum(y => y.TotalPrice);
+		}
+
 		public int TotalOrderCount()
 		{
 			using var context = new SignalRContext();

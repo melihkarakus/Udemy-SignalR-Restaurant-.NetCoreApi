@@ -38,6 +38,11 @@ namespace SignalR.BusinessLayer.Concrete
 			return _moneyCaseDal.GetListAll();
 		}
 
+		public decimal TTotalMoneyCaseAmount()
+		{
+			return _moneyCaseDal.TotalMoneyCaseAmount();
+		}
+
 		public void TUpdate(MoneyCase entity)
 		{
 			_moneyCaseDal.Update(entity);

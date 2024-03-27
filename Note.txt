@@ -98,3 +98,8 @@ if(@description = 'Hesap Kapatıldı')
 begin 
 Update MoneyCases set TotalAmount = TotalAmount + @totalPrice 
 end
+
+Eğerki SQL de bir sütunu farklı bir türde tasarlamak isteniyorsa
+        [Column(TypeName = "Date")] ----------> Colum kısmına typename de Date türü geçildi.
+        public DateTime OrderDate { get; set; }
+
