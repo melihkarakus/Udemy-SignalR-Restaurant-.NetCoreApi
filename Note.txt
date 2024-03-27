@@ -58,3 +58,43 @@ Order Ýliþkisel Tablo
 4- OrderDetails Tablosunda OrderID , Order sýnýfý geçildi çünkü order açýklama veya sipariþlerinin toplamlarý olacak þekilde
 5- Order Tablosunda ise OrderDetails Listelememiz gerekiyor OrderDetailsda veriler listelendiði için
 6- Product tablosunda ise OrderDetails listelememiz gerekiyor çünkü product verileri listelendiði için
+
+
+Order Sipariþ Ýçin Sql Sorgu Trigger Yazýldý
+----- Bu Trigger Ordera açýlan bir salon ve OrderDetailsda bu salon ve verilen yiyecekler geçildiðinde toplayýp MoneyCases yazdýrýyor
+ALTER Trigger [dbo].[IncreaseOrderTotalPrice]
+On [dbo].[OrderDetails] 
+After Insert 
+As 
+Declare @orderID int 
+Declare @orderPrice decimal
+select @orderID = OrderID from inserted
+select @orderPrice = TotalPrice from inserted
+Update Orders Set TotalPrice = TotalPrice +  @orderPrice where OrderID = @orderID
+
+
+---- Bu Trigger Ordera açýlan bir salondaki OrderDetails eþitlendi ve OrderDetailsda silinen bir yiyecek MoneyCases da eksi yazýlýyor
+ALTER Trigger [dbo].[DecreaseOrderTotalPrice]
+On [dbo].[OrderDetails] 
+After Delete
+As 
+Declare @orderID int 
+Declare @orderPrice decimal
+select @orderID = OrderID from deleted
+select @orderPrice = TotalPrice from deleted
+Update Orders Set TotalPrice = TotalPrice -  @orderPrice where OrderID = @orderID
+
+
+------ Bu Trigger OrderDetailsýn Description tarafýna bakýyor eðer ki Hesap Kapatýldý deniyorsa TotalAmounta direk üstüne toplama iþlemi yapacaktýr.
+ALTER trigger [dbo].[SumMoneyCases]
+on [dbo].[Orders]
+After Update
+As
+Declare @description nvarchar(max)
+Declare @totalPrice decimal(18,2)
+select @description = Description from inserted
+select @totalPrice = TotalPrice from inserted
+if(@description = 'Hesap Kapatýldý')
+begin 
+Update MoneyCases set TotalAmount = TotalAmount + @totalPrice 
+end

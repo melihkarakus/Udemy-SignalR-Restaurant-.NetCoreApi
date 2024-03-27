@@ -28,7 +28,12 @@ namespace SignalRApi.Controllers
             var values = _mapper.Map<List<ResultProductDtos>>(_productService.TGetListAll());
             return Ok(values);
         }
-        [HttpGet("ProductNameByMaxPrice")]
+        [HttpGet("ProductAvgPriceHamburger")]
+        public IActionResult ProductAvgPriceHamburger()
+        {
+            return Ok(_productService.TProductAvgPriceHamburger());
+        }
+		[HttpGet("ProductNameByMaxPrice")]
         public IActionResult ProductNameByMaxPrice()
         {
             return Ok(_productService.TProductNameByMaxPrice());
