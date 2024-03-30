@@ -13,10 +13,10 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", builder =>
     {
-        builder.AllowAnyHeader()
-        .AllowAnyMethod()
-        .SetIsOriginAllowed((host => true))
-        .AllowCredentials();
+        builder.AllowAnyHeader()//Bu yöntem, gelen istekteki tüm baþlýklarýn (headers) kabul edilmesine izin verir. Yani, isteðin herhangi bir baþlýða (header) sahip olmasýna izin verir.
+        .AllowAnyMethod()//Bu yöntem, HTTP isteðinin herhangi bir HTTP yöntemini (GET, POST, PUT, DELETE, vb.) kullanmasýna izin verir. Yani, tüm HTTP yöntemlerini kabul eder.
+        .SetIsOriginAllowed((host => true))//tüm kökenlere izin verir.
+        .AllowCredentials();//Bu, özellikle kimlik doðrulamasý gerektiren durumlarda önemlidir.
     });
 });
 builder.Services.AddSignalR();//SignalR Hubs Cors inþa edildikten sonra bu þekilde ekleme yap

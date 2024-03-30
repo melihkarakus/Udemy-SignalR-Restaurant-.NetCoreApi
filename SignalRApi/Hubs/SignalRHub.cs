@@ -69,5 +69,17 @@ namespace SignalRApi.Hubs
             var value16 = _menuTableService.TMenuTableCount();
             await Clients.All.SendAsync("MenuTableCount", value16);
         }
+
+        public async Task SendProgress()//Admin Dashboard İstatistik için için ilk başta hup tanımlama yapılıyor.
+        {
+            var value = _moneyCaseService.TTotalMoneyCaseAmount();
+            await Clients.All.SendAsync("TotalCaseMoneyAmount", value.ToString("0.00") + "TL");
+
+            var value1 = _orderService.TActiveOrderCount();
+            await Clients.All.SendAsync("ActiveOrderCount", value1);
+
+            var value2 = _menuTableService.TMenuTableCount();
+            await Clients.All.SendAsync("MenuTableCount", value2);
+        }
     }
 }
