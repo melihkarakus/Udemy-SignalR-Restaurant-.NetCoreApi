@@ -12,5 +12,6 @@
         public int CategoryID { get; set; }//Category Entity ID Eklendi
         public Category Category { get; set; }//Category tablosuda buraya geçildi
         public List<OrderDetail> OrderDetails { get; set; }
+        public List<Basket> Baskets { get; set; }
     }
 }
