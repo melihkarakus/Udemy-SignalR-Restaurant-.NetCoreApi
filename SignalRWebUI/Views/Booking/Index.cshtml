@@ -4,8 +4,76 @@
     Layout = "~/Views/AdminLayout/Index.cshtml";
     int sayac = 0;
 }
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
 
 <div class="container-fluid">
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () { // Düzeltme: $(document).ready() fonksiyonu düzgün syntax ile kullanılmalı
+            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7123/SignalRHub").build();
+
+            connection.start().then(() => {
+                $("#connstatus").text(connection.state);
+                setInterval(() => { //setInterval time görevi görüyor yani database ekleme yapıldığında tetikleme yapmadan direk ekrana yansıtma
+                    connection.invoke("GetBookingList"); //Tanımlanan kategori istek başlık buraya geçti
+                }, 5000);
+            }).catch((err) => { console.log(err) });
+
+            //Kategori sayısındaki gösterilcek içerik.
+            connection.on("GetBookingList", (value) => {
+                console.log(value); //Li signalR ile yapımı bu şekildedir.
+                // $("#bookinglist").empty();
+                // value.forEach((item, index) => {
+                //     $("#bookinglist").append(`<li class = "list-group-item">${item.name}</li>`)//Li ile listeleme signalR yapımı.
+                // });
+
+                //SignalR tablo sayfa yapımı yaptık ve dinamik olarak verileri getirme işlemi yapıldı.
+                let tableHtml = 
+                `
+                  <table class = "table mt-3">
+                  <thead>
+                  <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Kişi Adı</th>
+                  <th scope="col">Telefon</th>
+                  <th scope="col">Kişi Sayısı</th>
+                  <th scope="col">Durum</th>
+                  <th scope="col">Tarih</th>
+                  <th scope="col">Sil</th>
+                  <th scope="col">Güncelle</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                `
+                $.each(value, (index, item) => {
+                    tableHtml += 
+                    `
+                    <tr>
+                       <td>${item.bookingID}</td>
+                       <td>${item.name}</td>
+                       <td>${item.phone}</td>
+                       <td>${item.personelCount}</td>
+                       <td>${"Rezervasyon Alındı"}</td>
+                       <td>${item.date}</td>
+                               <td><a href="/Booking/DeleteBooking/${item.bookingID}" class="btn btn-outline-danger">Sil</a></td>
+                               <td><a href="/Booking/UpdateBooking/${item.bookingID}" class="btn btn-outline-success">Güncelle</a></td>
+                    </tr>
+                    `
+                });
+                tableHtml += "</tbody></table>";
+                $("#bookingList").html(tableHtml);
+            });
+        });
+    </script>
+
+
+
     <h4 class="page-title">Rezervasyon İşlemleri</h4>
     <div class="row">
         <div class="col-md-12">
@@ -17,37 +85,9 @@
                     <div class="card-sub">
                         Rezervasyon ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
                     </div>
-                    <table class="table mt-3">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Kişi Adı</th>
-                                <th scope="col">Telefon</th>
-                                <th scope="col">Kişi Sayısı</th>
-                                <th scope="col">Durum</th>
-                                <th scope="col">Tarih</th>
-                                <th scope="col">Sil</th>
-                                <th scope="col">Güncelle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                sayac++;
-                                <tr>
-                                    <td>@sayac</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Phone</td>
-                                    <td>@item.PersonelCount</td>
-                                    <td>Rezervasyon Alındı</td>
-                                    <td>@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</td>
-                                    <td><a href="/Booking/DeleteBooking/@item.BookingID" class="btn btn-outline-danger">Sil</a></td>
-                                    <td><a href="/Booking/UpdateBooking/@item.BookingID" class="btn btn-outline-success">Güncelle</a></td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                    <div id="bookingList"></div> @* yukarıda yazılan signalR ile tablo yapımını buraya çağırdık. *@
                     <a href="/Booking/CreateBooking" class="btn btn-outline-primary">Yeni Rezervasyon Ekle</a>
+                    
                 </div>
             </div>
         </div>
