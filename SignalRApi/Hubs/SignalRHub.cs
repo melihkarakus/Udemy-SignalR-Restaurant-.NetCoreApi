@@ -92,10 +92,13 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("GetBookingList", values);
         }//Tablo şeklinde admin booking verileri anlık çekme
 
-        public async Task SendNotification()
+        public async Task SendNotification()//SignalR anlık bildirim verileri çekme
         {
             var value = _notificationService.TNotificationCountByStatusFalse();
             await Clients.All.SendAsync("SendNotification", value);
+
+            var notificationListByFalse =_notificationService.TGetAllNotificationsByFalse();
+            await Clients.All.SendAsync("GetAllNotificationsByFalse", notificationListByFalse);
         }
     }
 }

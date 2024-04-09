@@ -103,3 +103,12 @@ Eðerki SQL de bir sütunu farklý bir türde tasarlamak isteniyorsa
         [Column(TypeName = "Date")] ----------> Colum kýsmýna typename de Date türü geçildi.
         public DateTime OrderDate { get; set; }
 
+
+
+
+SignalR Anlýk Bildirim Getirme ve Tekrarlamamak Ýçin Method
+1- SignalR notification sýnýfý için özel method yazýldý. 
+2- Api katmanýnda çaðýrýldý ve deneme testi yapýldý.
+3- Anlýk bildirimleri çekmek için frontend tarafýnda nerede kullandýðýmýz gözetlenildi. Shared -> _LayoutNavbarPartial -> Default
+4- Default içine ise scriptler yazýldý. 
+5- Tekrarlama yapmamasý için Empty methodu kullanýldý.
