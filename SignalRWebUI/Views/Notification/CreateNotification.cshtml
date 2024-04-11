@@ -1,0 +1,41 @@
+﻿@model CreateNotificationDtos
+@{
+    ViewData["Title"] = "CreateNotification";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <h4 class="page-title">Bildirim</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Ekleme Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="type">Bildirim Türü</label>
+                            <input type="text" class="form-control" asp-for="Type" id="type" placeholder="Bildirim Türü">
+                            <small id="text" class="form-text text-muted">Bildirim Türü Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Bildirim Açıklama</label>
+                            <input type="text" class="form-control" asp-for="Description" id="description" placeholder="Bildirim Açkıklama">
+                            <small id="text" class="form-text text-muted">Bildirim Açıklama Giriniz.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="icon">Bildirim İkonu</label>
+                            <input type="text" class="form-control" asp-for="Icon" id="icon" placeholder="Bildirim İkon">
+                            <small id="text" class="form-text text-muted">Bildirim İkon Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Bildirim Ekle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
