@@ -1,0 +1,33 @@
+﻿@model UpdateMenuTableDtos
+@{
+    ViewData["Title"] = "UpdateMenuTable";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <h4 class="page-title">Kategori</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Güncelleme Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="MenuTableID" class="form-control" />
+                            <input type="hidden" asp-for="Status" class="form-control" />
+                            <label for="name">Masa Adı</label>
+                            <input type="text" class="form-control" asp-for="Name" id="name" placeholder="Masa Adı">
+                            <small id="text" class="form-text text-muted">Masa Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Masa Güncelle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,69 @@
+﻿@model List<ResultMenuTableDtos>
+@{
+    ViewData["Title"] = "TableListByStatus";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<div class="container-fluid">
+    <script type="text/javascript">
+        $(document).ready(function () { // Düzeltme: $(document).ready() fonksiyonu düzgün syntax ile kullanılmalı
+            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7123/SignalRHub").build();
+
+            connection.start().then(() => {
+                $("#connstatus").text(connection.state);
+                setInterval(() => { //setInterval time görevi görüyor yani database ekleme yapıldığında tetikleme yapmadan direk ekrana yansıtma
+                    connection.invoke("GetMenuTableStatus"); //Tanımlanan kategori istek başlık buraya geçti
+                }, 1000);
+            }).catch((err) => { console.log(err) });
+
+            //masa durum gösterilcek içerik.
+            connection.on("GetMenuTableStatus", (value) => {
+                var color = "";
+                var status = "";
+                console.log(value);
+                let tableHtml = `<div class="row">`;
+                $.each(value, (index, item) => {
+                    if (item.status == true) {
+                        color = "card card-stats card-success";
+                        status = "Masa Dolu"
+                    }
+                    else{
+                        color = "card card-stats card-danger";
+                        status = "Masa Boş"
+                    }
+                    tableHtml +=
+                        `
+                      <div class="col-md-3">
+                        <div class="${color}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-certificate"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">${item.name}</p>
+                                            <h4 class="card-title">${status}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                });
+                tableHtml += `</div>`
+                $("#getmenutablestatus").html(tableHtml);
+            });
+        });
+    </script>
+    <h4 class="page-title">Masa Durum</h4>
+            <div id="getmenutablestatus"></div>
+</div>
