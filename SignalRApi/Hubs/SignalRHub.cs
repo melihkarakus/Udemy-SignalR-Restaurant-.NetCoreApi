@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using SignalR.BusinessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
+using System.Runtime.InteropServices;
 
 namespace SignalRApi.Hubs
 {
@@ -105,6 +106,12 @@ namespace SignalRApi.Hubs
         {
             var values = _menuTableService.TGetListAll();
             await Clients.All.SendAsync("GetMenuTableStatus", values);
+        }
+
+        public async Task SendMessage(string user, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
+
         }
     }
 }
