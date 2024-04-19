@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using SignalR.BusinessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
+using System.Configuration;
 using System.Runtime.InteropServices;
 
 namespace SignalRApi.Hubs
@@ -25,7 +26,7 @@ namespace SignalRApi.Hubs
             _bookingService = bookingService;
             _notificationService = notificationService;
         }
-
+        public static int clientCount { get; set; } = 0; //Client sayısı için static olarak verileri tutmamız gerekiyor anlık çekmek için
         public async Task SendStatistic()//Buraya abone oluncak kategori işlemleri için
         {
             var value = _categoryService.TCategoryCount();//Kategori toplancak
@@ -108,10 +109,23 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("GetMenuTableStatus", values);
         }
 
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string user, string message)//Anlık mesajlaşma işlemi için yapılan işlem
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
 
+        }
+
+        public override async Task OnConnectedAsync()//Client bağlı olan sayıyı alıyor
+        {
+            clientCount++;
+            await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+            await base.OnConnectedAsync();
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)//Client Bağlı olmayan sayıyı alıyor
+        {
+            clientCount--;
+            await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }
