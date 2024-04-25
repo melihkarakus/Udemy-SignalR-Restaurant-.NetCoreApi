@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SignalR.EntityLayer.Entities;
 
 namespace SignalR.DataAccessLayer.Concrete
 {
-    public class SignalRContext : DbContext
+    public class SignalRContext : IdentityDbContext<AppUser, AppRole, int>
     {
         //Database Bağlantı Konfigrasyonu
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
