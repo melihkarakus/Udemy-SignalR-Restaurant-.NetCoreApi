@@ -10,5 +10,8 @@ namespace SignalR.DataAccessLayer.Abstract
     //Kendine özgü imza tanımlamak için oluşturulur
     public interface IDiscountDal : IGenericDal<Discount>
     {
+        void ChangeStatusToTrue(int id);
+        void ChangeStatusToFalse(int id);
+        List<Discount> GetListByStatusTrue();
     }
 }

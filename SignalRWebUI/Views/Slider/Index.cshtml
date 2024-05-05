@@ -1,4 +1,4 @@
-﻿@model List<ResultFeatureDtos>
+﻿@model List<ResultSliderDtos>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -43,13 +43,13 @@
                                     <td>@item.Description2</td>
                                     <td>@item.Title3</td>
                                     <td>@item.Description3</td>
-                                    <td><a href="/Feature/DeleteFeature/@item.FeatureID" class="btn btn-outline-danger">Sil</a></td>
-                                    <td><a href="/Feature/UpdateFeature/@item.FeatureID" class="btn btn-outline-success">Güncelle</a></td>
+                                    <td><a href="/Slider/DeleteSlider/@item.SliderID" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/Slider/UpdateSlider/@item.SliderID" class="btn btn-outline-success">Güncelle</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <a href="/Feature/CreateFeature" class="btn btn-outline-primary">Yeni Öne Çıkan Ekle</a>
+                    <a href="/Slider/CreateSlider" class="btn btn-outline-primary">Yeni Öne Çıkan Ekle</a>
                 </div>
             </div>
         </div>

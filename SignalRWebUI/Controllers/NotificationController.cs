@@ -83,7 +83,7 @@ namespace SignalRWebUI.Controllers
             return View();
         }
 
-
+        //Özgü method notification controllerda çağrıldı. Index tarafında buttonlara eklendi.
         public async Task<IActionResult> NotificationStatusChangeToTrue(int id)
         {
             var client = _httpClientFactory.CreateClient();

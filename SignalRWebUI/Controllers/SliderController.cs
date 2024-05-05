@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.FeatureDto;
+using SignalRWebUI.Dtos.SliderDto;
 using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
-    public class FeatureController : Controller
+    public class SliderController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public FeatureController(IHttpClientFactory httpClientFactory)
+        public SliderController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,37 +17,37 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7123/api/Feature");
+            var responseMessage = await client.GetAsync("https://localhost:7123/api/Slider");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFeatureDtos>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSliderDtos>>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpGet]
-        public IActionResult CreateFeature()
+        public IActionResult CreateSlider()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateFeature(CreateFeatureDtos createFeatureDtos)
+        public async Task<IActionResult> CreateSlider(CreateSliderDtos createSliderDtos)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createFeatureDtos);
+            var jsonData = JsonConvert.SerializeObject(createSliderDtos);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7123/api/Feature", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7123/api/Slider", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
             return View();
         }
-        public async Task<IActionResult> DeleteFeature(int id)
+        public async Task<IActionResult> DeleteSlider(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7123/api/Feature/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7123/api/Slider/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -55,25 +55,25 @@ namespace SignalRWebUI.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> UpdateFeature(int id)
+        public async Task<IActionResult> UpdateSlider(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7123/api/Feature/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7123/api/Slider/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateFeatureDtos>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateSliderDtos>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateFeature(UpdateFeatureDtos updateFeatureDtos)
+        public async Task<IActionResult> UpdateSlider(UpdateSliderDtos updateSliderDtos)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateFeatureDtos);
+            var jsonData = JsonConvert.SerializeObject(updateSliderDtos);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7123/api/Feature", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7123/api/Slider", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

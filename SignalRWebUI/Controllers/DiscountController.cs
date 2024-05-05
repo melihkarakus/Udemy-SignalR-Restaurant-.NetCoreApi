@@ -34,6 +34,7 @@ namespace SignalRWebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateDiscount(CreateDiscountDtos createDiscountDtos)
         {
+            createDiscountDtos.Status = false;
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createDiscountDtos);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -79,6 +80,18 @@ namespace SignalRWebUI.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+        public async Task<IActionResult> ChangeStatusTrue(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"https://localhost:7123/api/Discount/ChangeStatusToTrue/{id}");
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> ChangeStatusFalse(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"https://localhost:7123/api/Discount/ChangeStatusToFalse/{id}");
+            return RedirectToAction("Index");
         }
     }
 }

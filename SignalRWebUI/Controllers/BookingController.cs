@@ -32,10 +32,11 @@ namespace SignalRWebUI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateBooking(ResultBookingDtos resultBookingDtos)
+        public async Task<IActionResult> CreateBooking(CreateBookingDtos createBookingDtos)
         {
+            createBookingDtos.Description = "Rezervasyon Alındı.";
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(resultBookingDtos);
+            var jsonData = JsonConvert.SerializeObject(createBookingDtos);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7123/api/Booking", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -79,6 +80,18 @@ namespace SignalRWebUI.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+        public async Task<IActionResult> BookingStatusApproved(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7123/api/Booking/BookingStatusApproved/{id}");
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> BookingStatusCancel(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7123/api/Booking/BookingStatusCancel/{id}");
+            return RedirectToAction("Index");
         }
     }
 }

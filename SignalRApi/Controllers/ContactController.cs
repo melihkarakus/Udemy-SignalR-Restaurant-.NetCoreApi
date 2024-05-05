@@ -34,6 +34,11 @@ namespace SignalRApi.Controllers
                 Location = createContactDtos.Location,
                 Mail = createContactDtos.Mail,
                 Phone = createContactDtos.Phone,
+                FooterTitle = createContactDtos.FooterTitle,
+                OpenDays = createContactDtos.OpenDays,
+                OpenDaysDescription = createContactDtos.OpenDaysDescription,
+                OpenDaysHours = createContactDtos.OpenDaysHours,
+
             });
             return Ok("İşlem başarılı şekilde eklenmiştir.");
         }
@@ -60,6 +65,10 @@ namespace SignalRApi.Controllers
                 Location = updateContactDtos.Location,
                 Mail = updateContactDtos.Mail,
                 Phone = updateContactDtos.Phone,
+                FooterTitle = updateContactDtos.FooterTitle,
+                OpenDays = updateContactDtos.OpenDays,
+                OpenDaysDescription = updateContactDtos.OpenDaysDescription,
+                OpenDaysHours = updateContactDtos.OpenDaysHours,
             });
             return Ok("İşlem başarılı şekilde eklenmiştir.");
         }

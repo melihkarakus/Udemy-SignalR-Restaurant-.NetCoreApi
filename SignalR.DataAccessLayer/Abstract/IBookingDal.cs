@@ -10,5 +10,7 @@ namespace SignalR.DataAccessLayer.Abstract
     //Kendine özgü imza tanımlamak için oluşturulur
     public interface IBookingDal : IGenericDal<Booking>
     {
+        void BookingStatusApproved(int id);
+        void BookingStatusCancel(int id);
     }
 }
