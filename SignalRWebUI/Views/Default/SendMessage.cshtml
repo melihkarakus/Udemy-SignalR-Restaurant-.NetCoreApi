@@ -1,0 +1,45 @@
+﻿
+@model CreateMessageDtos
+<section class="book_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                Bize Ulaşın
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    <form method="Post" asp-action="SendMessage" asp-asp-controller="Default">
+                        <div>
+                            <input type="text" asp-for="NameSurname" class="form-control" placeholder="Adınız Soyadınız" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Telefon Numaranız" />
+                        </div>
+                        <div>
+                            <input type="email" asp-for="Mail" class="form-control" placeholder="Email" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="Subject" class="form-control" placeholder="Konu" />
+                        </div>
+                        <div>
+                            <textarea asp-for="MessageContent" rows="5" class="form-control"></textarea>
+                        </div>
+                        
+                        <div class="btn_box">
+                            <button>
+                                Mesaj Gönder
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="map_container ">
+                    <div id="googleMap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
