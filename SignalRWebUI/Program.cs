@@ -1,14 +1,33 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using SignalR.DataAccessLayer.Concrete;
 using SignalR.EntityLayer.Entities;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//KUllanýcý giriþ yapmadan admin tarafýna eriþemez. 
+var requiredAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 
 // Add services to the container.
 //Bunu yazmazsan register sayfasý çalýþmaz
 builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<SignalRContext>();
+
+
 builder.Services.AddHttpClient();
-builder.Services.AddControllersWithViews();
+//Authorize iþlemi yukarý yazýldýktan sonra buraya eklenmeler yapýldý.
+builder.Services.AddControllersWithViews(opt =>
+{
+    opt.Filters.Add(new AuthorizeFilter(requiredAuthorizePolicy));
+});
+
+//Proje otantike olmadan login sayfamýza gönderme iþlemi
+builder.Services.ConfigureApplicationCookie(opts =>
+{
+    opts.LoginPath = "/Login/Index";
+});
 
 var app = builder.Build();
 
@@ -24,7 +43,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();//Otantike ekle
 app.UseAuthorization();
 
 app.MapControllerRoute(
