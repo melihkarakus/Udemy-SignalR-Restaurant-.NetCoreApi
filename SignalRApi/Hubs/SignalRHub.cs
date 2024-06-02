@@ -86,6 +86,33 @@ namespace SignalRApi.Hubs
 
             var value2 = _menuTableService.TMenuTableCount();
             await Clients.All.SendAsync("MenuTableCount", value2);
+
+            var value3 = _productService.TProductPriceAvg();
+            await Clients.All.SendAsync("ReceiveProductPriceAvg", value3);
+
+            var value4 = _productService.TProductAvgPriceHamburger();
+            await Clients.All.SendAsync("ReceiveAvgPriceHamburger", value4);
+
+            var value5 = _productService.TProductCountByCategoryNameDrink();
+            await Clients.All.SendAsync("ReceiveCountByCategoryNameDrink", value5);
+
+            var value6 = _orderService.TTotalOrderCount();
+            await Clients.All.SendAsync("ReceiveTotalOrderCount", value6);
+
+            var value7 = _productService.TProductAvgPriceBySteakBurger();
+            await Clients.All.SendAsync("ReceiveProductAvgPriceBySteakBurger", value7);
+
+            var value8 = _categoryService.TPassiveCategoryCount();
+            await Clients.All.SendAsync("ReceivePassiveCategoryCount", value8);
+
+            var value9 = _categoryService.TActiveCategoryCount();
+            await Clients.All.SendAsync("ReceiveActiveCategoryCount", value9);
+
+            var value10 = _orderService.TTotalOrderCount();
+            await Clients.All.SendAsync("ReceiveTotalOrderCount", value10);
+
+            var value11 = _menuTableService.TActiveMenuTableCount();
+            await Clients.All.SendAsync("ReceiveActiveMenuTableCount", value11);
         }
 
         public async Task GetBookingList()

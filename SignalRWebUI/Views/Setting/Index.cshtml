@@ -1,0 +1,67 @@
+﻿@model UserEditDtos
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <h4 class="page-title">Ayarlar</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Profil Ayarları Sayfası</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="categoryname">Adınız</label>
+                            <input type="text" class="form-control" asp-for="Name" id="Name" placeholder="Adı">
+                            <small id="text" class="form-text text-muted">Adınızı Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="categoryname">Soyadınız</label>
+                            <input type="text" class="form-control" asp-for="Surname" id="Surname" placeholder="Soyadı">
+                            <small id="text" class="form-text text-muted">Soyadı Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="categoryname">Mail Adresi</label>
+                            <input type="email" class="form-control" asp-for="Mail" id="Mail" placeholder="Mail Adresi">
+                            <small id="text" class="form-text text-muted">Mail Adresi Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="categoryname">Kullanıcı Adı</label>
+                            <input type="text" class="form-control" asp-for="UserName" id="UserName" placeholder="Kullanıcı Adı">
+                            <small id="text" class="form-text text-muted">Kullanıcı Adı Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="Password">Şifreniz</label>
+                            <input type="password" class="form-control" asp-for="Password" id="Password" placeholder="Şifreniz">
+                            <small id="text" class="form-text text-muted">Şifreniz Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="ConfirmPassword">Şifre Tekrar</label>
+                            <input type="password" class="form-control" asp-for="ConfirmPassword" id="ConfirmPassword" placeholder="Şifre Tekrar">
+                            <small id="text" class="form-text text-muted">Şifre Tekrar Giriniz.</small>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Bilgileri Güncelle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

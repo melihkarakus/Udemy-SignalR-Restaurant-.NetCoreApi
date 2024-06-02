@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SignalR.BusinessLayer.Concrete
 {
-	public class MenuTableManager : IMenuTableService
+    public class MenuTableManager : IMenuTableService
 	{
 		private readonly IMenuTableDal _menuTableDal;
 
@@ -18,7 +18,12 @@ namespace SignalR.BusinessLayer.Concrete
 			_menuTableDal = menuTableDal;
 		}
 
-		public void TAdd(MenuTable entity)
+        public int TActiveMenuTableCount()
+        {
+            return _menuTableDal.ActiveMenuTableCount();
+        }
+
+        public void TAdd(MenuTable entity)
 		{
 			_menuTableDal.Add(entity);
 		}
